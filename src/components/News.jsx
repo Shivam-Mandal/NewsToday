@@ -15,7 +15,8 @@ const News = (props) => {
     // }
 
     const updateNews = async () => {
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=27bef9b8b00b48dfb125eed296a894c6&page=${page}&pageSize=${props.pageSize}`;
+        // const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=27bef9b8b00b48dfb125eed296a894c6&page=${page}&pageSize=${props.pageSize}`;
+        const url = `https://gnews.io/api/v4/top-headlines?category=${props.category}&lang=en&country=${props.country}&apikey=3069bdf26adf8cceacf67d1233ab7dad&page=${page}&pageSize=${props.pageSize}`;
         const response = await fetch(url);
         const data = await response.json();
         setArticles(data.articles)
@@ -52,7 +53,7 @@ const News = (props) => {
                         {articles.map((e) => (
                             e.title && (
                                 <div className="col-md-4" key={e.url}>
-                                    <NewsItem title={e.title || ''} desc={e.description || ''} url={e.urlToImage} newsUrl={e.url} author={e.author} date={e.publishedAt} source={e.source.name} />
+                                    <NewsItem title={e.title || ''} desc={e.description || ''} url={e.image} newsUrl={e.url} author={e.author} date={e.publishedAt} source={e.source.name} />
                                 </div>
                             )
                         ))}
